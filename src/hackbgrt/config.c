@@ -45,6 +45,11 @@ hackbgrt_parse_param (const char* param, const char* esp_path, hackbgrt_config_t
   char* image_weight_str = NULL;
   int image_weight = 1;
 
+  grub_dprintf("hackbgrt", "HackBGRT: ignoring param '%s', build configured to always remove\n", param);
+  action = HACKBGRT_REMOVE;
+  hackbgrt_set_config_with_random(esp_path, config, action, image_path, image_x, image_y, image_weight, image_weight_sum_p);
+  return GRUB_ERR_NONE;
+
   grub_dprintf("hackbgrt", "HackBGRT: param '%s' will be parsed\n", param);
   grub_errno = GRUB_ERR_NONE;
   char* param_dup = grub_strdup (param);
